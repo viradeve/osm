@@ -18,7 +18,9 @@ npm install
 ```
 
 ## Usage
+
 ### Local Development
+
 Start the server locally:
 
 ```bash
@@ -33,6 +35,7 @@ The server will run on port 3000 by default.
    - Path: /
    - Method: GET
    - Response: Welcome message
+
 2. Cache Proxy Route
    
    - Path: /:ip/cache/*
@@ -40,18 +43,20 @@ The server will run on port 3000 by default.
    - Parameters:
      - ip : Target IP address
      - cache/* : Cache path
+
 ### Deployment
 Deploy to Vercel:
 
 ```bash
 vercel
- ```
+```
 
 or click this button
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/GTPSHAX/simple-reverse-proxy)
 
 ## Project Structure
+
 ```plaintext
 simple-reverse-proxy/
 ├── MainApp.js          # Main application setup
@@ -62,26 +67,33 @@ simple-reverse-proxy/
 │   ├── CacheProxy.js   # Proxy route handler
 │   └── IndexRoute.js   # Index route handler
 └── vercel.json         # Vercel deployment configuration
- ```
 ```
 
 ## Environment Variables
+
 No environment variables are required for basic setup.
 
 ## Dependencies
+
 - express: ^4.21.2
 - node-fetch: ^2.7.0
+
 ## License
+
 MIT License - See LICENSE file for details.
 
 ## Contributing
+
 1. Fork the repository
 2. Create your feature branch
 3. Commit your changes
 4. Push to the branch
 5. Create a new Pull Request
+
 ## Author
+
 GrowPlus Community
 
 ## Support
+
 For issues and feature requests, please use the GitHub issues page .
