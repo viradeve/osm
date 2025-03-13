@@ -10,6 +10,9 @@ A lightweight reverse proxy server built with Node.js and Express, designed for 
 - IP-based routing
 - Vercel deployment ready
 - Clean and maintainable codebase
+- In-memory caching system with 1-hour expiration
+- Automatic memory usage monitoring
+- Cache cleanup to prevent memory issues
 
 ## Installation
 
