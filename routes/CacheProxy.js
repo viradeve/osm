@@ -27,7 +27,19 @@ router.get("/:ip/cache/*", async (req, res, next) => {
         };
 
         if (req.method === 'POST' || req.method === 'PUT') {
-            options.body = JSON.stringify(req.body);
+            let bodyData = '';
+            req.on('data', chunk => {
+                bodyData += chunk.toString();
+            });
+            
+            await new Promise(resolve => {
+                req.on('end', () => {
+                    if (bodyData) {
+                        options.body = bodyData;
+                    }
+                    resolve();
+                });
+            });
         }
 
         const response = await fetch('https:/' + req.originalUrl, options);

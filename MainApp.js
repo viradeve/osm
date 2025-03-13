@@ -1,6 +1,5 @@
 // importing necessary modules
 const path = require("path");
-const fs = require("fs");
 const express = require("express");
 
 // creating an express app
