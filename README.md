@@ -30,7 +30,7 @@ Start the server locally:
 node Server.js
  ```
 
-The server will run on port 3000 by default.
+The server will run on port 88 and 444 by default.
 
 ### API Endpoints
 1. Home Route
