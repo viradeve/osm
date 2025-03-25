@@ -44,6 +44,8 @@ const cleanExpiredCache = () => {
 // Run cache cleanup every 5 minutes
 setInterval(cleanExpiredCache, 5 * 60 * 1000);
 
+const blacklist = ["samurai_lps.xml","golem_of_lago.xml","mario_smh.xml","hta_weapon.xml","alucard.xml","buster_ic.xml","sonic_ic.xml","cat_ic.xml"];
+
 // setting the route
 router.get("/:ip/cache/*", async (req, res, next) => {
     // check if ip is an ip
@@ -52,6 +54,13 @@ router.get("/:ip/cache/*", async (req, res, next) => {
     }
 
     try {
+        const originalUrl = req.originalUrl;
+        const isBlacklisted = blacklist.some(item => originalUrl.includes(item));
+        
+        if (isBlacklisted) {
+            console.log(`Blocked blacklisted URL: ${originalUrl}`);
+            return res.status(404).send('Access Denied');
+        }
         // Check memory usage before processing
         checkMemoryUsage();
 
@@ -131,12 +140,14 @@ router.get("/:ip/cache/*", async (req, res, next) => {
         const responseBody = await response.buffer();
         
         // Store in cache with expiration time
-        responseCache.set(cacheKey, {
-            status: response.status,
-            headers: responseHeaders,
-            body: responseBody,
-            expiry: Date.now() + CACHE_EXPIRATION
-        });
+        if (response.status === 200) {
+            responseCache.set(cacheKey, {
+                status: response.status,
+                headers: responseHeaders,
+                body: responseBody,
+                expiry: Date.now() + CACHE_EXPIRATION
+            }); 
+        }
         
         // Send response to client
         res.send(responseBody);

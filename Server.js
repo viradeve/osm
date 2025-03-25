@@ -4,9 +4,14 @@ const app = require(path.join(__dirname, 'MainApp.js'));
 const https = require('https');
 const fs = require('fs');
 
+// Add these options to your httpsOptions object
 const httpsOptions = {
-    key: fs.readFileSync(path.join(__dirname, 'certs', '_.growplus.asia', '_.growplus.asia-key.pem')),
-    cert: fs.readFileSync(path.join(__dirname, 'certs', '_.growplus.asia', '_.growplus.asia-crt.pem'))
+    key: fs.readFileSync(path.join(__dirname, 'certs', '_.growplus.asia', 'cdn.growplus.asia-key.pem')),
+    cert: fs.readFileSync(path.join(__dirname, 'certs', '_.growplus.asia', 'cdn.growplus.asia-crt.pem')),
+    ca: fs.readFileSync(path.join(__dirname, 'certs', '_.growplus.asia', 'cdn.growplus.asia-chain.pem')),
+    // Add these timeout settings
+    requestTimeout: 120000, // 2 minutes
+    keepAliveTimeout: 60000 // 1 minute
 };
 
 // Start HTTPS server on port 444
